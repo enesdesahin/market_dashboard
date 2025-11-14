@@ -1,0 +1,8 @@
+[theme]
+base = "dark"
+primaryColor = "#FF962F"
+backgroundColor = "#0A0A0A"
+secondaryBackgroundColor = "#1F1F1F"
+textColor = "#FFFFFF"
+font = "Rethink Sans"
+baseRadius = "small"

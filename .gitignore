@@ -1,0 +1,11 @@
+.DS_Store
+.vscode/settings.json
+__pycache__/dashboard.cpython-311.pyc
+views/__pycache__/bonds.cpython-311.pyc
+views/__pycache__/bonds.cpython-312.pyc
+views/__pycache__/commodities.cpython-311.pyc
+views/__pycache__/common.cpython-311.pyc
+views/__pycache__/common.cpython-312.pyc
+views/__pycache__/currencies.cpython-311.pyc
+views/__pycache__/equities.cpython-311.pyc
+views/__pycache__/overview.cpython-311.pyc
