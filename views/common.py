@@ -213,6 +213,22 @@ def preprocess(data: pd.DataFrame) -> pd.DataFrame:
     return data.ffill().dropna()
 
 
+def ensure_datetime_index(data: pd.DataFrame) -> pd.DataFrame:
+    """Return a frame with a DatetimeIndex, even when the input is empty."""
+    if data.empty:
+        if isinstance(data.index, pd.DatetimeIndex):
+            return data
+        safe = data.copy()
+        safe.index = pd.DatetimeIndex([], name="Date")
+        return safe
+    if isinstance(data.index, pd.DatetimeIndex):
+        return data
+    safe = data.copy()
+    safe.index = pd.to_datetime(safe.index, errors="coerce")
+    safe = safe[~safe.index.isna()]
+    return safe
+
+
 def normalize(prices: pd.DataFrame) -> pd.DataFrame:
     """Convert a price series into cumulative returns starting at 1."""
     if prices.empty:
@@ -318,13 +334,17 @@ def get_market_regime_data(
     end: date | None = None,
 ) -> pd.DataFrame:
     """Compute market regime labels from growth, inflation, and volatility proxies."""
+    empty_frame = pd.DataFrame(
+        columns=["Growth", "Inflation", "Volatility", "Regime"],
+        index=pd.DatetimeIndex([], name="Date"),
+    )
     start_date = start or DEFAULT_START_DATE
     end_date = end or DEFAULT_END_DATE
     tickers = ("^GSPC", "^VIX", "CL=F")
     prices = download_data(tickers, start_date, end_date, use_live=True)
 
     if prices.empty or not all(symbol in prices.columns for symbol in tickers):
-        return pd.DataFrame(columns=["Growth", "Inflation", "Volatility", "Regime"])
+        return empty_frame
 
     prices = preprocess(prices)
 
@@ -342,7 +362,7 @@ def get_market_regime_data(
     ).dropna()
 
     if regime_df.empty:
-        return pd.DataFrame(columns=["Growth", "Inflation", "Volatility", "Regime"])
+        return empty_frame
 
     regime_df["Regime"] = regime_df.apply(
         lambda row: classify_regime(row["Growth"], row["Inflation"], row["Volatility"]),

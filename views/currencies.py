@@ -15,6 +15,7 @@ from views.common import (
     DEFAULT_START_DATE,
     add_regime_shading,
     download_data,
+    ensure_datetime_index,
     get_market_regime_data,
     normalize,
     preprocess,
@@ -373,7 +374,7 @@ def render() -> None:
         st.warning("Date range must span at least two distinct dates.")
         return
 
-    regime_universe = get_market_regime_data()
+    regime_universe = ensure_datetime_index(get_market_regime_data())
     regime_df = regime_universe.loc[
         (regime_universe.index >= pd.Timestamp(start_date))
         & (regime_universe.index <= pd.Timestamp(end_date))
