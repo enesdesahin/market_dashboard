@@ -1,8 +1,79 @@
+[server]
+enableStaticServing = true
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-Regular.ttf"
+style = "normal"
+weight = "400"
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-Italic.ttf"
+style = "italic"
+weight = "400"
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-Medium.ttf"
+style = "normal"
+weight = "500"
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-MediumItalic.ttf"
+style = "italic"
+weight = "500"
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-SemiBold.ttf"
+style = "normal"
+weight = "600"
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-SemiBoldItalic.ttf"
+style = "italic"
+weight = "600"
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-Bold.ttf"
+style = "normal"
+weight = "700"
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-BoldItalic.ttf"
+style = "italic"
+weight = "700"
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-ExtraBold.ttf"
+style = "normal"
+weight = "800"
+
+[[theme.fontFaces]]
+family = "Rethink Sans"
+url = "static/RethinkSans-ExtraBoldItalic.ttf"
+style = "italic"
+weight = "800"
+
 [theme]
 base = "dark"
+font = "Rethink Sans"
+
 primaryColor = "#FF962F"
 backgroundColor = "#0A0A0A"
 secondaryBackgroundColor = "#1F1F1F"
 textColor = "#FFFFFF"
-font = "Rethink Sans"
+
 baseRadius = "small"
+
+headingFontWeights = [700, 600, 600, 500, 500, 500]
+headingFontSizes = ["2.8rem", "2.3rem", "2.0rem", "1.7rem", "1.4rem"]
+
+showWidgetBorder = true
+borderColor = "#2A2A2A"
